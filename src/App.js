@@ -6,10 +6,26 @@ function App() {
   const [usernameReg, setUsrnameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
 
+  const [username, setUsrname1] = useState("");
+  const [password, setPassword1] = useState("");
+
   const register = () => {
     Axios.post("http://localhost:3003/register", {
       username: usernameReg,
       password: passwordReg,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const login = () => {
+    Axios.post("http://localhost:3003/login", {
+      username: username,
+      password: password,
     })
       .then((response) => {
         console.log(response);
@@ -42,10 +58,22 @@ function App() {
       <div className="box">
         <h1>Login</h1>
         <label>Username</label>
-        <input type="text" placeholder="Username" />
+        <input
+          type="text"
+          placeholder="Username"
+          onChange={(e) => {
+            setUsrname1(e.target.value);
+          }}
+        />
         <label>Password</label>
-        <input type="password" placeholder="Password" />
-        <button>Login</button>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => {
+            setPassword1(e.target.value);
+          }}
+        />
+        <button onClick={login}>Login</button>
       </div>
     </div>
   );
