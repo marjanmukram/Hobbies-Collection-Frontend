@@ -7,6 +7,7 @@ const Login = () => {
   const history = useHistory();
   const [usernameReg, setUsrnameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
+  const [emailReg, setEmailReg] = useState("");
 
   const [username, setUsrname1] = useState("");
   const [password, setPassword1] = useState("");
@@ -15,6 +16,7 @@ const Login = () => {
     Axios.post("http://localhost:3003/register", {
       username: usernameReg,
       password: passwordReg,
+      email: emailReg,
     })
       .then((response) => {
         console.log(response);
@@ -48,6 +50,13 @@ const Login = () => {
           type="text"
           onChange={(e) => {
             setUsrnameReg(e.target.value);
+          }}
+        />
+        <label>E-mail</label>
+        <input
+          type="email"
+          onChange={(e) => {
+            setEmailReg(e.target.value);
           }}
         />
         <label>Password</label>
