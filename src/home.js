@@ -10,15 +10,29 @@ const Home = () => {
   const [hobby4, setHobby4] = useState("");
   const [hobby5, setHobby5] = useState("");
 
+  const [allHobbies, setAllHobbies] = useState([]);
+
   useEffect(() => {
-    Axios.get("http://localhost:3003")
+    Axios.get("http://localhost:3003/")
       .then((response) => {
+        // console.log(response.data);
         setAllUsers(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [allUsers]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3003/hobby")
+      .then((response) => {
+        setAllHobbies(response.data);
+        // console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [allHobbies]);
 
   const submitHobbis = () => {
     Axios.post("http://localhost:3003", {
@@ -71,6 +85,17 @@ const Home = () => {
 
       <div className="homeContainers">
         <h1>Hobbies Collection</h1>
+        {allHobbies.map((hobby) => {
+          return (
+            <div>
+              <h4>{hobby.hobby1}</h4>
+              <h4>{hobby.hobby2}</h4>
+              <h4>{hobby.hobby3}</h4>
+              <h4>{hobby.hobby4}</h4>
+              <h4>{hobby.hobby5}</h4>
+            </div>
+          );
+        })}
       </div>
 
       <div className="homeContainers">
@@ -78,8 +103,13 @@ const Home = () => {
         {allUsers.map((user, id) => {
           return (
             <div>
-              <h1>{user.username}</h1>
-              <h1>{user.email}</h1>
+              <ui>
+                <h4>
+                  <li>
+                    Username:{user.username} || Email: {user.email}
+                  </li>
+                </h4>
+              </ui>
             </div>
           );
         })}
