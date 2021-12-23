@@ -43,10 +43,11 @@ const Login = () => {
 
   return (
     <div className="App">
-      <div className="box">
+      <div className="login">
         <h1>Register</h1>
         <label>Username</label>
         <input
+          onclick="register"
           type="text"
           onChange={(e) => {
             setUsrnameReg(e.target.value);
@@ -68,7 +69,7 @@ const Login = () => {
         />
         <button onClick={register}>Register</button>
       </div>
-      <div className="box">
+      <div className="login">
         <h1>Login</h1>
         <label>Username</label>
         <input

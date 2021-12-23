@@ -3,35 +3,32 @@
   margin: 5px;
 }
 
-.box {
-  justify-content: center;
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
-  width: 380px;
-  height: 320px;
-}
-
 input {
   display: block;
   width: 350px;
   height: 35px;
-  margin: 6px;
   font-size: large;
 }
 
-.box button {
-  width: 150px;
+/* login */
+
+.login {
+  display: inline-grid;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  width: 380px;
+  height: 420px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.login button {
+  width: 360px;
   height: 40px;
 }
 
-/* .inputHobbies {
-  display: block;
-  width: 350px;
-  height: 35px;
-  margin: 6px;
-  font-size: large;
-} */
+/* home.js */
 
 .homeMain {
   text-align: center;
@@ -46,4 +43,14 @@ input {
   width: 380px;
   height: 500px;
   margin: 10px;
+  padding: 20px;
+}
+
+.homeContainers button {
+  width: 360px;
+  height: 40px;
+}
+
+li {
+  text-align: left;
 }
