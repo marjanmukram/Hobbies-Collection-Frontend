@@ -12,7 +12,7 @@
   height: 320px;
 }
 
-.box input {
+input {
   display: block;
   width: 350px;
   height: 35px;
@@ -23,4 +23,27 @@
 .box button {
   width: 150px;
   height: 40px;
+}
+
+/* .inputHobbies {
+  display: block;
+  width: 350px;
+  height: 35px;
+  margin: 6px;
+  font-size: large;
+} */
+
+.homeMain {
+  text-align: center;
+}
+
+.homeContainers {
+  text-align: center;
+  display: inline-grid;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  width: 380px;
+  height: 500px;
+  margin: 10px;
 }
