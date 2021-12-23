@@ -1,13 +1,26 @@
 .App {
   text-align: center;
+  margin: 5px;
 }
 
 .box {
+  justify-content: center;
   background: #fff;
   border-radius: 7px;
   box-shadow: 0 2px 5px #ccc;
-  padding: 10px;
-  width: 240px;
-  margin: 16px;
-  float: left;
+  width: 380px;
+  height: 320px;
+}
+
+.box input {
+  display: block;
+  width: 350px;
+  height: 35px;
+  margin: 6px;
+  font-size: large;
+}
+
+.box button {
+  width: 150px;
+  height: 40px;
 }
