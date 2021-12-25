@@ -52,7 +52,7 @@ const Home = () => {
       <button
         onClick={() => {
           localStorage.removeItem("token");
-          history.push("/login");
+          history.goBack();
         }}
       >
         logOut
