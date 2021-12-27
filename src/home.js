@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router-dom";
 
 const Home = () => {
   const history = useHistory();
@@ -46,13 +46,17 @@ const Home = () => {
     });
   };
 
+  if (!localStorage.getItem("token")) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div className="homeMain">
       <h1>Loging Success</h1>
       <button
         onClick={() => {
           localStorage.removeItem("token");
-          history.goBack();
+          history.push();
         }}
       >
         logOut
