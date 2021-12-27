@@ -2,8 +2,8 @@
 // import React, { useState } from "react";
 // import { useHistory } from "react-router-dom";
 import "./App.css";
-import SignIn from "./signIn";
-import SignUp from "./signUp";
+import SignIn from "./components/signIn";
+import SignUp from "./components/signUp";
 
 const Login = () => {
   // const history = useHistory();

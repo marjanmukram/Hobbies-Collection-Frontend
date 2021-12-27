@@ -1,9 +1,9 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import LogOutButton from "./components/logoutButton";
 
 const Home = () => {
-  const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
 
   const [hobby1, setHobby1] = useState("");
@@ -51,16 +51,19 @@ const Home = () => {
   }
 
   return (
-    <div className="homeMain">
-      <h1>Loging Success</h1>
-      <button
+    <div>
+      <h3>
+        <LogOutButton /> Loging Success
+      </h3>
+
+      {/* <button
         onClick={() => {
           localStorage.removeItem("token");
           history.push();
         }}
       >
         logOut
-      </button>
+      </button> */}
 
       <div className="homeContainers">
         <h1>Enter your Hobbies </h1>
