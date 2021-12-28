@@ -6,11 +6,13 @@ import LogOutButton from "./components/logoutButton";
 const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
 
-  const [hobby1, setHobby1] = useState("");
-  const [hobby2, setHobby2] = useState("");
-  const [hobby3, setHobby3] = useState("");
-  const [hobby4, setHobby4] = useState("");
-  const [hobby5, setHobby5] = useState("");
+  const [hobby, setHobby] = useState({
+    hobby1: "",
+    hobby2: "",
+    hobby3: "",
+    hobby4: "",
+    hobby5: "",
+  });
 
   const [allHobbies, setAllHobbies] = useState([]);
 
@@ -23,7 +25,7 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [allUsers]);
+  }, []);
 
   useEffect(() => {
     Axios.get("http://localhost:3003/hobby")
@@ -34,15 +36,29 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [allHobbies]);
+  }, []);
 
   const submitHobbis = () => {
     Axios.post("http://localhost:3003", {
-      hobby1: hobby1,
-      hobby2: hobby2,
-      hobby3: hobby3,
-      hobby4: hobby4,
-      hobby5: hobby5,
+      hobby1: hobby.hobby1,
+      hobby2: hobby.hobby2,
+      hobby3: hobby.hobby3,
+      hobby4: hobby.hobby4,
+      hobby5: hobby.hobby5,
+    });
+    setHobby({
+      hobby1: "",
+      hobby2: "",
+      hobby3: "",
+      hobby4: "",
+      hobby5: "",
+    });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setHobby((pv) => {
+      return { ...pv, [name]: value };
     });
   };
 
@@ -51,75 +67,68 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <h3>
-        <LogOutButton /> Loging Success
-      </h3>
-
-      {/* <button
-        onClick={() => {
-          localStorage.removeItem("token");
-          history.push();
-        }}
-      >
-        logOut
-      </button> */}
+    <div className="homeMain">
+      <h1 style={{ height: "100px" }}>
+        <LogOutButton /> Welcome To Hobbies Collection
+      </h1>
 
       <div className="homeContainers">
         <h1>Enter your Hobbies </h1>
         <input
           type="text"
-          onChange={(e) => {
-            setHobby1(e.target.value);
-          }}
+          name="hobby1"
+          value={hobby.hobby1}
+          onChange={handleChange}
         />
         <input
           type="text"
-          onChange={(e) => {
-            setHobby2(e.target.value);
-          }}
+          name="hobby2"
+          value={hobby.hobby2}
+          onChange={handleChange}
         />
         <input
           type="text"
-          onChange={(e) => {
-            setHobby3(e.target.value);
-          }}
+          name="hobby3"
+          value={hobby.hobby3}
+          onChange={handleChange}
         />
         <input
           type="text"
-          onChange={(e) => {
-            setHobby4(e.target.value);
-          }}
+          name="hobby4"
+          value={hobby.hobby4}
+          onChange={handleChange}
         />
         <input
           type="text"
-          onChange={(e) => {
-            setHobby5(e.target.value);
-          }}
+          name="hobby5"
+          value={hobby.hobby5}
+          onChange={handleChange}
         />
         <button onClick={submitHobbis}>Submit</button>
       </div>
 
-      <div className="homeContainers">
+      <div className="homeContainerHobby">
         <h1>Hobbies Collection</h1>
-        {allHobbies.map((hobby) => {
-          return (
-            <div>
-              <h4>{hobby.hobby1}</h4>
-              <h4>{hobby.hobby2}</h4>
-              <h4>{hobby.hobby3}</h4>
-              <h4>{hobby.hobby4}</h4>
-              <h4>{hobby.hobby5}</h4>
-            </div>
-          );
-        })}
+        <div>
+          {allHobbies.map((hobby) => {
+            return (
+              <div className="hobbyItem">
+                <h4>{hobby.hobby1}</h4>
+                <h4>{hobby.hobby2}</h4>
+                <h4>{hobby.hobby3}</h4>
+                <h4>{hobby.hobby4}</h4>
+                <h4>{hobby.hobby5}</h4>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className="homeContainers">
         <h1>All Users</h1>
         {allUsers.map((user, id) => {
           return (
-            <div>
+            <div className="hobbyItem">
               <ui>
                 <h4>
                   <li>
