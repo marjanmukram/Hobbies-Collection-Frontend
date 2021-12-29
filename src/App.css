@@ -35,10 +35,6 @@ input {
   text-align: center;
 }
 
-.homeMain h1 {
-  height: 45;
-}
-
 .homeContainers {
   text-align: center;
   display: inline-grid;

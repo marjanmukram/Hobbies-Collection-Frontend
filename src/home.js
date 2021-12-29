@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
@@ -19,7 +20,8 @@ const Home = () => {
   const [allHobbies, setAllHobbies] = useState(hobbyJson);
 
   useEffect(() => {
-    axios.get("http://localhost:3003/")
+    axios
+      .get("http://localhost:3003/")
       .then((_response) => {
         setAllUsers(usersJson);
       })
@@ -29,7 +31,8 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:3003/hobby")
+    axios
+      .get("http://localhost:3003/hobby")
       .then((response) => {
         setAllHobbies(hobbyJson);
       })
@@ -39,21 +42,24 @@ const Home = () => {
   }, []);
 
   const submitHobbis = () => {
-    axios.post("http://localhost:3003", {
-      hobby1: hobby.hobby1,
-      hobby2: hobby.hobby2,
-      hobby3: hobby.hobby3,
-      hobby4: hobby.hobby4,
-      hobby5: hobby.hobby5,
-    }).then((res) => {
-      axios.get("http://localhost:3003/hobby")
-        .then((response) => {
-          setAllHobbies(hobbyJson);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
+    axios
+      .post("http://localhost:3003", {
+        hobby1: hobby.hobby1,
+        hobby2: hobby.hobby2,
+        hobby3: hobby.hobby3,
+        hobby4: hobby.hobby4,
+        hobby5: hobby.hobby5,
+      })
+      .then((res) => {
+        axios
+          .get("http://localhost:3003/hobby")
+          .then((response) => {
+            setAllHobbies(hobbyJson);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
     setHobby({
       hobby1: "",
       hobby2: "",
@@ -76,9 +82,9 @@ const Home = () => {
 
   return (
     <div className='homeMain'>
-      <h1 style={{ height: "100px" }}>
-        <LogOutButton /> Welcome To Hobbies Collection
-      </h1>
+      <LogOutButton />
+
+      <Typography variant='h2'>Welcome To Hobbies Collection</Typography>
 
       <div className='homeContainers'>
         <h1>Enter your Hobbies </h1>
