@@ -2,9 +2,11 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import LogOutButton from "./components/logoutButton";
+import hobbyJson from "./mocks/hobbies.json";
+import usersJson from "./mocks/users.json";
 
 const Home = () => {
-  const [allUsers, setAllUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState(usersJson);
 
   const [hobby, setHobby] = useState({
     hobby1: "",
@@ -14,13 +16,12 @@ const Home = () => {
     hobby5: "",
   });
 
-  const [allHobbies, setAllHobbies] = useState([]);
+  const [allHobbies, setAllHobbies] = useState(hobbyJson);
 
   useEffect(() => {
     Axios.get("http://localhost:3003/")
-      .then((response) => {
-        // console.log(response.data);
-        setAllUsers(response.data);
+      .then((_response) => {
+        setAllUsers(usersJson);
       })
       .catch((err) => {
         console.log(err);
@@ -30,8 +31,7 @@ const Home = () => {
   useEffect(() => {
     Axios.get("http://localhost:3003/hobby")
       .then((response) => {
-        setAllHobbies(response.data);
-        // console.log(response.data);
+        setAllHobbies(hobbyJson);
       })
       .catch((err) => {
         console.log(err);
@@ -48,8 +48,7 @@ const Home = () => {
     }).then((res) => {
       Axios.get("http://localhost:3003/hobby")
         .then((response) => {
-          setAllHobbies(response.data);
-          // console.log(response.data);
+          setAllHobbies(hobbyJson);
         })
         .catch((err) => {
           console.log(err);
@@ -72,56 +71,56 @@ const Home = () => {
   };
 
   if (!localStorage.getItem("token")) {
-    return <Redirect to="/login" />;
+    return <Redirect to='/login' />;
   }
 
   return (
-    <div className="homeMain">
+    <div className='homeMain'>
       <h1 style={{ height: "100px" }}>
         <LogOutButton /> Welcome To Hobbies Collection
       </h1>
 
-      <div className="homeContainers">
+      <div className='homeContainers'>
         <h1>Enter your Hobbies </h1>
         <input
-          type="text"
-          name="hobby1"
+          type='text'
+          name='hobby1'
           value={hobby.hobby1}
           onChange={handleChange}
         />
         <input
-          type="text"
-          name="hobby2"
+          type='text'
+          name='hobby2'
           value={hobby.hobby2}
           onChange={handleChange}
         />
         <input
-          type="text"
-          name="hobby3"
+          type='text'
+          name='hobby3'
           value={hobby.hobby3}
           onChange={handleChange}
         />
         <input
-          type="text"
-          name="hobby4"
+          type='text'
+          name='hobby4'
           value={hobby.hobby4}
           onChange={handleChange}
         />
         <input
-          type="text"
-          name="hobby5"
+          type='text'
+          name='hobby5'
           value={hobby.hobby5}
           onChange={handleChange}
         />
         <button onClick={submitHobbis}>Submit</button>
       </div>
 
-      <div className="homeContainerHobby">
+      <div className='homeContainerHobby'>
         <h1>Hobbies Collection</h1>
         <div>
           {allHobbies.map((hobby) => {
             return (
-              <div className="hobbyItem">
+              <div className='hobbyItem'>
                 <h4>{hobby.hobby1}</h4>
                 <h4>{hobby.hobby2}</h4>
                 <h4>{hobby.hobby3}</h4>
@@ -133,11 +132,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="homeContainers">
+      <div className='homeContainers'>
         <h1>All Users</h1>
         {allUsers.map((user, id) => {
           return (
-            <div className="hobbyItem">
+            <div className='hobbyItem'>
               <ui>
                 <h4>
                   <li>

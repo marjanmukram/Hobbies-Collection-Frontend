@@ -1,0 +1,26 @@
+[
+  {
+    "id": 72,
+    "username": "bob",
+    "password": "9f9d51bc70ef21ca5c14f307980a29d8",
+    "email": "bob@gamil.com"
+  },
+  {
+    "id": 73,
+    "username": "Gill",
+    "password": "0a80bb44145c3f9ae84ec9fa2c7c9939",
+    "email": "gill@gmail.com"
+  },
+  {
+    "id": 74,
+    "username": "mic",
+    "password": "4eea1e5de59fbc61cb3ab480dbbf6a5f",
+    "email": "mic@gmail.com"
+  },
+  {
+    "id": 75,
+    "username": "nik",
+    "password": "f64609172efea86a5a6fbae12ab86d33",
+    "email": "nik@gmail.com"
+  }
+]
