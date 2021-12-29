@@ -8,7 +8,7 @@ import usersJson from "./mocks/users.json";
 
 const Home = () => {
   const [allUsers, setAllUsers] = useState(usersJson);
-
+  const [allHobbies, setAllHobbies] = useState(hobbyJson);
   const [hobby, setHobby] = useState({
     hobby1: "",
     hobby2: "",
@@ -17,9 +17,7 @@ const Home = () => {
     hobby5: "",
   });
 
-  const [allHobbies, setAllHobbies] = useState(hobbyJson);
-
-  useEffect(() => {
+  const fetchAllUsers = () => {
     axios
       .get("http://localhost:3003/")
       .then((_response) => {
@@ -28,17 +26,25 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
 
-  useEffect(() => {
+  const fetchAllHobbies = () => {
     axios
       .get("http://localhost:3003/hobby")
-      .then((response) => {
+      .then(() => {
         setAllHobbies(hobbyJson);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, []);
+
+  useEffect(() => {
+    fetchAllHobbies();
   }, []);
 
   const submitHobbis = () => {
@@ -50,15 +56,8 @@ const Home = () => {
         hobby4: hobby.hobby4,
         hobby5: hobby.hobby5,
       })
-      .then((res) => {
-        axios
-          .get("http://localhost:3003/hobby")
-          .then((response) => {
-            setAllHobbies(hobbyJson);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      .then(() => {
+        fetchAllHobbies();
       });
     setHobby({
       hobby1: "",
