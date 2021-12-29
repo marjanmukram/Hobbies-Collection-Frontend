@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import Axios from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -21,7 +21,7 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post("http://localhost:3003/login", {
+    axios.post("http://localhost:3003/login", {
       username: username,
       password: password,
     })

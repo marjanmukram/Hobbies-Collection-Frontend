@@ -8,8 +8,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-import Axios from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -21,26 +20,9 @@ export default function SignUp() {
   const [passwordReg, setPasswordReg] = useState("");
   const [emailReg, setEmailReg] = useState("");
 
-  // const register = (e) => {
-  //   e.preventDefault();
-  //   Axios.post("http://localhost:3003/register", {
-  //     username: usernameReg,
-  //     password: passwordReg,
-  //     email: emailReg,
-  //   })
-  //     .then((response) => {
-  //       console.log(response);
-  //       localStorage.setItem("token", "something");
-  //       history.push("/");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post("http://localhost:3003/register", {
+    axios.post("http://localhost:3003/register", {
       username: usernameReg,
       password: passwordReg,
       email: emailReg,

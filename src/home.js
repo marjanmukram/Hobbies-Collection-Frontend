@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import LogOutButton from "./components/logoutButton";
@@ -19,7 +19,7 @@ const Home = () => {
   const [allHobbies, setAllHobbies] = useState(hobbyJson);
 
   useEffect(() => {
-    Axios.get("http://localhost:3003/")
+    axios.get("http://localhost:3003/")
       .then((_response) => {
         setAllUsers(usersJson);
       })
@@ -29,7 +29,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    Axios.get("http://localhost:3003/hobby")
+    axios.get("http://localhost:3003/hobby")
       .then((response) => {
         setAllHobbies(hobbyJson);
       })
@@ -39,14 +39,14 @@ const Home = () => {
   }, []);
 
   const submitHobbis = () => {
-    Axios.post("http://localhost:3003", {
+    axios.post("http://localhost:3003", {
       hobby1: hobby.hobby1,
       hobby2: hobby.hobby2,
       hobby3: hobby.hobby3,
       hobby4: hobby.hobby4,
       hobby5: hobby.hobby5,
     }).then((res) => {
-      Axios.get("http://localhost:3003/hobby")
+      axios.get("http://localhost:3003/hobby")
         .then((response) => {
           setAllHobbies(hobbyJson);
         })
