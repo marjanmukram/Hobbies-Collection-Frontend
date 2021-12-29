@@ -22,11 +22,12 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:3003/register", {
-      username: usernameReg,
-      password: passwordReg,
-      email: emailReg,
-    })
+    axios
+      .post("http://localhost:3003/register", {
+        username: usernameReg,
+        password: passwordReg,
+        email: emailReg,
+      })
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", "something");
@@ -39,29 +40,22 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h5">
+        <Box mt={8} d={"flex"} flexDirection='column' alignItems='center'>
+          <Typography component='h1' variant='h5'>
             Sign up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete='given-name'
+                  name='firstName'
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id='firstName'
+                  label='First Name'
                   autoFocus
                   onChange={(e) => {
                     setUsrnameReg(e.target.value);
@@ -72,10 +66,10 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id='email'
+                  label='Email Address'
+                  name='email'
+                  autoComplete='email'
                   onChange={(e) => {
                     setEmailReg(e.target.value);
                   }}
@@ -85,11 +79,11 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  name='password'
+                  label='Password'
+                  type='password'
+                  id='password'
+                  autoComplete='new-password'
                   onChange={(e) => {
                     setPasswordReg(e.target.value);
                   }}
@@ -97,16 +91,16 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent='flex-end'>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href='#' variant='body2'>
                   Already have an account? Sign in
                 </Link>
               </Grid>
