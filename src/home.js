@@ -45,6 +45,15 @@ const Home = () => {
       hobby3: hobby.hobby3,
       hobby4: hobby.hobby4,
       hobby5: hobby.hobby5,
+    }).then((res) => {
+      Axios.get("http://localhost:3003/hobby")
+        .then((response) => {
+          setAllHobbies(response.data);
+          // console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
     setHobby({
       hobby1: "",
