@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <div className="App">
       <h1>LEASURE HOBBIES</h1>
-      <div>
+      <div style={{ display: "inline-flex" }}>
         <SignUp />
         <SignIn />
         {/* <form onSubmit={register}>
