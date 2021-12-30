@@ -47,12 +47,16 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h5">
+          <Typography
+            component="h1"
+            variant="h5"
+            sx={{ paddingBottom: "50px" }}
+          >
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-              autoComplete="given-name"
+              autoComplete="off"
               name="firstName"
               required
               fullWidth
@@ -75,6 +79,7 @@ export default function SignIn() {
               onChange={(e) => {
                 setPassword1(e.target.value);
               }}
+              sx={{ paddingBottom: "30px" }}
             />
             <Button
               type="submit"

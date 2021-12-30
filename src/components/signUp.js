@@ -74,7 +74,7 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
+                  autoComplete="off"
                   name="firstName"
                   required
                   fullWidth
@@ -93,7 +93,7 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
+                  autoComplete="off"
                   onChange={(e) => {
                     setEmailReg(e.target.value);
                   }}
@@ -124,7 +124,13 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => {
+                    history.push("/signIn");
+                  }}
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>
