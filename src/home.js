@@ -1,6 +1,9 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import AllUsers from "./components/allUsers";
+import EnterHobby from "./components/enterHobby";
+import HobbyCollection from "./components/hobbyCollection";
 import LogOutButton from "./components/logoutButton";
 
 const Home = () => {
@@ -79,74 +82,15 @@ const Home = () => {
         <LogOutButton /> Welcome To Hobbies Collection
       </h1>
 
-      <div className="homeContainers">
-        <h1>Enter your Hobbies </h1>
-        <input
-          type="text"
-          name="hobby1"
-          value={hobby.hobby1}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="hobby2"
-          value={hobby.hobby2}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="hobby3"
-          value={hobby.hobby3}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="hobby4"
-          value={hobby.hobby4}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="hobby5"
-          value={hobby.hobby5}
-          onChange={handleChange}
-        />
-        <button onClick={submitHobbis}>Submit</button>
-      </div>
+      <EnterHobby
+        hobby={hobby}
+        handleChange={handleChange}
+        submitHobbis={submitHobbis}
+      />
 
-      <div className="homeContainerHobby">
-        <h1>Hobbies Collection</h1>
-        <div>
-          {allHobbies.map((hobby) => {
-            return (
-              <div className="hobbyItem">
-                <h4>{hobby.hobby1}</h4>
-                <h4>{hobby.hobby2}</h4>
-                <h4>{hobby.hobby3}</h4>
-                <h4>{hobby.hobby4}</h4>
-                <h4>{hobby.hobby5}</h4>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <HobbyCollection allHobbies={allHobbies} />
 
-      <div className="homeContainers">
-        <h1>All Users</h1>
-        {allUsers.map((user, id) => {
-          return (
-            <div className="hobbyItem">
-              <ui>
-                <h4>
-                  <li>
-                    Username:{user.username} || Email: {user.email}
-                  </li>
-                </h4>
-              </ui>
-            </div>
-          );
-        })}
-      </div>
+      <AllUsers allUsers={allUsers} />
     </div>
   );
 };
