@@ -56,7 +56,7 @@ export default function SignIn() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-              autoComplete="given-name"
+              autoComplete="off"
               name="firstName"
               required
               fullWidth

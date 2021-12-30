@@ -8,30 +8,35 @@ const EnterHobby = ({ hobby, handleChange, submitHobbis }) => {
         type="text"
         name="hobby1"
         value={hobby.hobby1}
+        autoComplete="off"
         onChange={handleChange}
       />
       <input
         type="text"
         name="hobby2"
         value={hobby.hobby2}
+        autoComplete="off"
         onChange={handleChange}
       />
       <input
         type="text"
         name="hobby3"
         value={hobby.hobby3}
+        autoComplete="off"
         onChange={handleChange}
       />
       <input
         type="text"
         name="hobby4"
         value={hobby.hobby4}
+        autoComplete="off"
         onChange={handleChange}
       />
       <input
         type="text"
         name="hobby5"
         value={hobby.hobby5}
+        autoComplete="off"
         onChange={handleChange}
       />
       <button onClick={submitHobbis}>Submit</button>

@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <div className="App">
-      <h1>LEASURE HOBBIES</h1>
+      <h1>LEASURE && HOBBIES</h1>
       <div style={{ display: "inline-flex" }}>
         <SignUp />
         <SignIn />
