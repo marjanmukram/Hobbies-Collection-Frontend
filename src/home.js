@@ -16,7 +16,7 @@ const Home = () => {
 
   const [allHobbies, setAllHobbies] = useState([]);
 
-  useEffect(() => {
+  const fetchAllUsers = () => {
     Axios.get("http://localhost:3003/")
       .then((response) => {
         // console.log(response.data);
@@ -25,9 +25,9 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
 
-  useEffect(() => {
+  const fetchAllHobbies = () => {
     Axios.get("http://localhost:3003/hobby")
       .then((response) => {
         setAllHobbies(response.data);
@@ -36,6 +36,11 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    fetchAllUsers();
+    fetchAllHobbies();
   }, []);
 
   const submitHobbis = () => {
@@ -46,14 +51,7 @@ const Home = () => {
       hobby4: hobby.hobby4,
       hobby5: hobby.hobby5,
     }).then((res) => {
-      Axios.get("http://localhost:3003/hobby")
-        .then((response) => {
-          setAllHobbies(response.data);
-          // console.log(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      fetchAllHobbies();
     });
     setHobby({
       hobby1: "",
