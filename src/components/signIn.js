@@ -19,6 +19,8 @@ export default function SignIn() {
   const [username, setUsrname1] = useState("");
   const [password, setPassword1] = useState("");
 
+  const [loginErr, setLoginErr] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     Axios.post("http://localhost:3003/login", {
@@ -31,7 +33,7 @@ export default function SignIn() {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        return setLoginErr("Password and username doesn't match");
       });
   };
 
@@ -50,7 +52,7 @@ export default function SignIn() {
           <Typography
             component="h1"
             variant="h5"
-            sx={{ paddingBottom: "50px" }}
+            sx={{ paddingBottom: "56px" }}
           >
             Sign in
           </Typography>
@@ -79,8 +81,8 @@ export default function SignIn() {
               onChange={(e) => {
                 setPassword1(e.target.value);
               }}
-              sx={{ paddingBottom: "30px" }}
             />
+            <div>{loginErr}</div>
             <Button
               type="submit"
               fullWidth
