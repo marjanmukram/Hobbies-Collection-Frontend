@@ -19,7 +19,7 @@ export default function SignIn() {
   const [username, setUsrname1] = useState("");
   const [password, setPassword1] = useState("");
 
-  const [loginErr, setLoginErr] = useState(false);
+  const [loginErr, setLoginErr] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ export default function SignIn() {
         history.push("/");
       })
       .catch((err) => {
-        return setLoginErr("Password and username doesn't match");
+        return setLoginErr("Password and first name doesn't match");
       });
   };
 
@@ -81,8 +81,9 @@ export default function SignIn() {
               onChange={(e) => {
                 setPassword1(e.target.value);
               }}
+              sx={{ paddingBottom: "25px" }}
             />
-            <div>{loginErr}</div>
+
             <Button
               type="submit"
               fullWidth
@@ -93,6 +94,7 @@ export default function SignIn() {
             </Button>
           </Box>
         </Box>
+        <div>{loginErr}</div>
       </Container>
     </ThemeProvider>
   );
