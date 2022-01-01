@@ -21,6 +21,8 @@ export default function SignUp() {
   const [passwordReg, setPasswordReg] = useState("");
   const [emailReg, setEmailReg] = useState("");
 
+  const [loginErr, setLoginErr] = useState("");
+
   // const register = (e) => {
   //   e.preventDefault();
   //   Axios.post("http://localhost:3003/register", {
@@ -51,7 +53,7 @@ export default function SignUp() {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        return setLoginErr("Email already exists");
       });
   };
 
@@ -137,6 +139,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
+        <div>{loginErr}</div>
       </Container>
     </ThemeProvider>
   );
