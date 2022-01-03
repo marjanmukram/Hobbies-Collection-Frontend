@@ -47,13 +47,11 @@ const Home = () => {
   }, []);
 
   const submitHobbis = () => {
-    Axios.post("http://localhost:3003", {
-      hobby1: hobby.hobby1,
-      hobby2: hobby.hobby2,
-      hobby3: hobby.hobby3,
-      hobby4: hobby.hobby4,
-      hobby5: hobby.hobby5,
-    }).then((res) => {
+    const { hobby1, hobby2, hobby3, hobby4, hobby5 } = hobby;
+    const hobbyArray = [hobby1, hobby2, hobby3, hobby4, hobby5];
+    const filteredHobbyArray = hobbyArray.filter((hobby) => !!hobby);
+    
+    Axios.post("http://localhost:3003", filteredHobbyArray).then((res) => {
       fetchAllHobbies();
     });
     setHobby({
@@ -73,11 +71,11 @@ const Home = () => {
   };
 
   if (!localStorage.getItem("token")) {
-    return <Redirect to="/login" />;
+    return <Redirect to='/login' />;
   }
 
   return (
-    <div className="homeMain">
+    <div className='homeMain'>
       <h1 style={{ height: "100px" }}>
         <LogOutButton /> Welcome To Hobbies Collection
       </h1>
