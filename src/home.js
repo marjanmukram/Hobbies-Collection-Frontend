@@ -47,13 +47,26 @@ const Home = () => {
   }, []);
 
   const submitHobbis = () => {
-    Axios.post("http://localhost:3003", {
-      hobby1: hobby.hobby1,
-      hobby2: hobby.hobby2,
-      hobby3: hobby.hobby3,
-      hobby4: hobby.hobby4,
-      hobby5: hobby.hobby5,
-    }).then((res) => {
+    // const {hobby1, hobby2, hobby3, hobby4, hobby5} = hobby
+    // const hobbyArry = [
+    //   hobby1,
+    //   hobby2,
+    //   hobby3,
+    //   hobby4,
+    //   hobby5,
+    // ];                             we can destructure hobbyArray as line no 51 to 58
+
+    const hobbyArry = [
+      hobby.hobby1,
+      hobby.hobby2,
+      hobby.hobby3,
+      hobby.hobby4,
+      hobby.hobby5,
+    ];
+
+    const hobbyArrayFilter = hobbyArry.filter((hobby) => hobby);
+
+    Axios.post("http://localhost:3003", hobbyArrayFilter).then((res) => {
       fetchAllHobbies();
     });
     setHobby({
