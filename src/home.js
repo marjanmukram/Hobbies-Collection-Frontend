@@ -64,9 +64,17 @@ const Home = () => {
       hobby.hobby5,
     ];
 
-    const hobbyArrayFilter = hobbyArry.filter((hobby) => hobby);
+    const hobbyArrayFilter = hobbyArry.filter((hobby) => !!hobby);
 
-    Axios.post("http://localhost:3003", hobbyArrayFilter).then((res) => {
+    // const removeDup = [...new Set(hobbyArrayFilter)];
+
+    const hobbyRemoveDup = hobbyArrayFilter.filter(function (item, index) {
+      return hobbyArrayFilter.indexOf(item) === index;
+    });
+
+    const hobbyRemoveDupTrimmed = hobbyRemoveDup.map((hobby) => hobby.trim());
+
+    Axios.post("http://localhost:3003", hobbyRemoveDupTrimmed).then((res) => {
       fetchAllHobbies();
     });
     setHobby({
