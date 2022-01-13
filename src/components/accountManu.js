@@ -14,8 +14,8 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../App";
 
 export default function AccountMenu() {
-  const user = React.useContext(UserContext);
-  console.log(user);
+  const userDetails = React.useContext(UserContext);
+  console.log(userDetails.user);
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -85,7 +85,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <Avatar /> {userDetails.user}
         </MenuItem>
         <MenuItem>
           <Avatar /> My account

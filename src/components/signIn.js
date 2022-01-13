@@ -10,11 +10,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../App";
 
 const theme = createTheme();
 
 export default function SignIn() {
   const history = useHistory();
+  const userDetails = React.useContext(UserContext);
 
   const [username, setUsrname1] = useState("");
   const [password, setPassword1] = useState("");
@@ -33,13 +35,15 @@ export default function SignIn() {
         history.push("/");
       })
       .catch((err) => {
+        userDetails.setUser("Nimal");
+        history.push("/");
         return setLoginErr("Password and first name doesn't match");
       });
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Box
           sx={{
@@ -50,34 +54,34 @@ export default function SignIn() {
           }}
         >
           <Typography
-            component="h1"
-            variant="h5"
+            component='h1'
+            variant='h5'
             sx={{ paddingBottom: "56px" }}
           >
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-              autoComplete="off"
-              name="firstName"
+              autoComplete='off'
+              name='firstName'
               required
               fullWidth
-              id="firstName"
-              label="First Name"
+              id='firstName'
+              label='First Name'
               autoFocus
               onChange={(e) => {
                 setUsrname1(e.target.value);
               }}
             />
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
               onChange={(e) => {
                 setPassword1(e.target.value);
               }}
@@ -85,9 +89,9 @@ export default function SignIn() {
             />
 
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In

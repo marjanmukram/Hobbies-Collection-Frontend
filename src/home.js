@@ -1,10 +1,11 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import AllUsers from "./components/allUsers";
 import EnterHobby from "./components/enterHobby";
 import HobbyCollection from "./components/hobbyCollection";
 import SearchBar from "./components/searchBar";
+import { UserContext } from "./App";
 
 const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -18,6 +19,7 @@ const Home = () => {
   });
 
   const [allHobbies, setAllHobbies] = useState([]);
+  const userDetails = useContext(UserContext);
 
   const [hobbySearchWord, setHobbySearchWord] = useState("");
   const [searchHobby, setSearchHobby] = useState([]);
@@ -72,6 +74,7 @@ const Home = () => {
   }, [allUsers, userSearchWord]);
 
   const submitHobbis = () => {
+    userDetails.setUser("Amal");
     // const {hobby1, hobby2, hobby3, hobby4, hobby5} = hobby
     // const hobbyArry = [
     //   hobby1,
@@ -118,9 +121,9 @@ const Home = () => {
     });
   };
 
-  if (!localStorage.getItem("token")) {
-    return <Redirect to='/login' />;
-  }
+  // if (!localStorage.getItem("token")) {
+  //   return <Redirect to='/login' />;
+  // }
   return (
     <div className='homeMain'>
       <h1 style={{ height: "100px" }}>
