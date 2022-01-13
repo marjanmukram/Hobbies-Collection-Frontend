@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import AllUsers from "./components/allUsers";
 import EnterHobby from "./components/enterHobby";
 import HobbyCollection from "./components/hobbyCollection";
-import LogOutButton from "./components/logoutButton";
+import SearchBar from "./components/searchBar";
 
 const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -19,10 +19,15 @@ const Home = () => {
 
   const [allHobbies, setAllHobbies] = useState([]);
 
+  const [hobbySearchWord, setHobbySearchWord] = useState("");
+  const [searchHobby, setSearchHobby] = useState([]);
+
+  const [userSearchWord, setUserSearchWord] = useState("");
+  const [searchUser, setSearchUser] = useState([]);
+
   const fetchAllUsers = () => {
     Axios.get("http://localhost:3003/")
       .then((response) => {
-        // console.log(response.data);
         setAllUsers(response.data);
       })
       .catch((err) => {
@@ -34,7 +39,6 @@ const Home = () => {
     Axios.get("http://localhost:3003/hobby")
       .then((response) => {
         setAllHobbies(response.data);
-        // console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -46,12 +50,56 @@ const Home = () => {
     fetchAllHobbies();
   }, []);
 
+  useEffect(() => {
+    if (!hobbySearchWord) {
+      setSearchHobby(allHobbies);
+      return;
+    }
+    setSearchHobby(
+      searchHobby.filter((hby) => hby.hobby1.includes(hobbySearchWord))
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allHobbies, hobbySearchWord]);
+
+  useEffect(() => {
+    if (!userSearchWord) {
+      setSearchUser(allUsers);
+    } else {
+      setSearchUser(() =>
+        allUsers.filter((user) => user.username.includes(userSearchWord))
+      );
+    }
+  }, [allUsers, userSearchWord]);
+
   const submitHobbis = () => {
-    const { hobby1, hobby2, hobby3, hobby4, hobby5 } = hobby;
-    const hobbyArray = [hobby1, hobby2, hobby3, hobby4, hobby5];
-    const filteredHobbyArray = hobbyArray.filter((hobby) => !!hobby);
-    
-    Axios.post("http://localhost:3003", filteredHobbyArray).then((res) => {
+    // const {hobby1, hobby2, hobby3, hobby4, hobby5} = hobby
+    // const hobbyArry = [
+    //   hobby1,
+    //   hobby2,
+    //   hobby3,
+    //   hobby4,
+    //   hobby5,
+    // ];                             we can destructure hobbyArray as line no 51 to 58
+
+    const hobbyArry = [
+      hobby.hobby1,
+      hobby.hobby2,
+      hobby.hobby3,
+      hobby.hobby4,
+      hobby.hobby5,
+    ];
+
+    const hobbyArrayFilter = hobbyArry.filter((hobby) => !!hobby);
+
+    // const removeDup = [...new Set(hobbyArrayFilter)];
+
+    const hobbyRemoveDup = hobbyArrayFilter.filter(function (item, index) {
+      return hobbyArrayFilter.indexOf(item) === index;
+    });
+
+    const hobbyRemoveDupTrimmed = hobbyRemoveDup.map((hobby) => hobby.trim());
+
+    Axios.post("http://localhost:3003", hobbyRemoveDupTrimmed).then((res) => {
       fetchAllHobbies();
     });
     setHobby({
@@ -73,11 +121,14 @@ const Home = () => {
   if (!localStorage.getItem("token")) {
     return <Redirect to='/login' />;
   }
-
   return (
     <div className='homeMain'>
       <h1 style={{ height: "100px" }}>
-        <LogOutButton /> Welcome To Hobbies Collection
+        <SearchBar
+          setHobbySearchWord={setHobbySearchWord}
+          setUserSearchWord={setUserSearchWord}
+        />
+        Welcome To Hobbies Collection
       </h1>
 
       <EnterHobby
@@ -86,9 +137,9 @@ const Home = () => {
         submitHobbis={submitHobbis}
       />
 
-      <HobbyCollection allHobbies={allHobbies} />
+      <HobbyCollection allHobbies={searchHobby} />
 
-      <AllUsers allUsers={allUsers} />
+      <AllUsers allUsers={searchUser} />
     </div>
   );
 };
