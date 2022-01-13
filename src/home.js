@@ -5,9 +5,12 @@ import AllUsers from "./components/allUsers";
 import EnterHobby from "./components/enterHobby";
 import HobbyCollection from "./components/hobbyCollection";
 import SearchBar from "./components/searchBar";
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
+  const history = useHistory();
+  console.log(history);
 
   const [hobby, setHobby] = useState({
     hobby1: "",
@@ -118,9 +121,9 @@ const Home = () => {
     });
   };
 
-  if (!localStorage.getItem("token")) {
-    return <Redirect to='/login' />;
-  }
+  // if (!localStorage.getItem("token")) {
+  //   return <Redirect to='/login' />;
+  // }
   return (
     <div className='homeMain'>
       <h1 style={{ height: "100px" }}>

@@ -21,25 +21,40 @@ export default function SignIn() {
 
   const [loginErr, setLoginErr] = useState("");
 
+  const response = [
+    {
+      id: 72,
+      username: "bob",
+      password: "9f9d51bc70ef21ca5c14f307980a29d8",
+      email: "bob@gamil.com",
+    },
+  ];
+
   const handleSubmit = (event) => {
     event.preventDefault();
     Axios.post("http://localhost:3003/login", {
       username: username,
       password: password,
     })
-      .then((response) => {
-        console.log(response);
+      .then((r) => {
+        console.log({ response });
         localStorage.setItem("token", "test");
         history.push("/");
       })
       .catch((err) => {
+        history.push({
+          pathname: "/",
+          state: {
+            user: response,
+          },
+        });
         return setLoginErr("Password and first name doesn't match");
       });
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Box
           sx={{
@@ -50,34 +65,34 @@ export default function SignIn() {
           }}
         >
           <Typography
-            component="h1"
-            variant="h5"
+            component='h1'
+            variant='h5'
             sx={{ paddingBottom: "56px" }}
           >
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-              autoComplete="off"
-              name="firstName"
+              autoComplete='off'
+              name='firstName'
               required
               fullWidth
-              id="firstName"
-              label="First Name"
+              id='firstName'
+              label='First Name'
               autoFocus
               onChange={(e) => {
                 setUsrname1(e.target.value);
               }}
             />
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
               onChange={(e) => {
                 setPassword1(e.target.value);
               }}
@@ -85,9 +100,9 @@ export default function SignIn() {
             />
 
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In

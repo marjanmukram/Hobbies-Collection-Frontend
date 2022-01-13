@@ -82,7 +82,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <Avatar /> Bob Hardcoded
         </MenuItem>
         <MenuItem>
           <Avatar /> My account
